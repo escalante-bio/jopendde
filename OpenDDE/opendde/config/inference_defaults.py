@@ -14,8 +14,9 @@ inference_configs: dict[str, Any] = {
     # Empty = "unset"; resolved at run time to CLI > JSON modelSeeds > random seed.
     "seeds": ListValue([], dtype=int),
     "dump_dir": "./output",
-    "need_atom_confidence": False,
+    "need_atom_confidence": True,
     "sorted_by_ranking_score": True,
+    "device": "auto",
     "input_json_path": RequiredValue(str),
     "load_checkpoint_dir": os.path.join(OPENDDE_ROOT_DIR, "checkpoint"),
     "num_workers": 0,
@@ -26,8 +27,8 @@ inference_configs: dict[str, Any] = {
     "msa_pair_as_unpair": True,
     "use_template": False,
     "use_rna_msa": False,
-    # Fold-CP migration switch.  "single" keeps the original single-card path;
-    # "distributed" enables the future 2D context-parallel path.
+    # "single" keeps the original single-card path. "distributed" enables the
+    # maintained one-dimensional 1 x P context-parallel path.
     "foldcp_mode": "single",
     "foldcp_size_dp": 1,
     "foldcp_size_cp": 1,

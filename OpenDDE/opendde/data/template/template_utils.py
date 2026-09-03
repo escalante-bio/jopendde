@@ -8,12 +8,22 @@ import pickle
 import random
 import time
 from datetime import datetime, timezone
-from typing import Any, Dict, Mapping, Optional, Sequence, Tuple, Union, cast
+from typing import (
+    Any,
+    Dict,
+    Final,
+    Mapping,
+    Optional,
+    Sequence,
+    Tuple,
+    TypeAlias,
+    Union,
+    cast,
+)
 
 import numpy as np
 import requests
 from numpy.typing import DTypeLike
-from typing_extensions import Final, TypeAlias
 
 from opendde.data.constants import (
     ATOM37_NUM,
@@ -796,6 +806,7 @@ class TemplateHitFeaturizer:
         self._zero_center_positions = _zero_center_positions
         self._max_template_candidates_num = _max_template_candidates_num
         self._fetch_remote = fetch_remote
+        self._template_feature_cache = {}
 
         if max_template_date:
             if isinstance(max_template_date, str):
@@ -870,6 +881,10 @@ class TemplateHitFeaturizer:
         Returns:
             A tuple of (TemplateSearchResult, timing_dict).
         """
+        cache_key = (sequence_uid, query_sequence)
+        if cache_key in self._template_feature_cache:
+            return self._template_feature_cache[cache_key]
+
         cutoff = self._max_template_date
         if max_template_date:
             if isinstance(max_template_date, str):
@@ -951,4 +966,6 @@ class TemplateHitFeaturizer:
                     features.append(res.features)
                     final_hits.append(res.hit)
 
-        return TemplateSearchResult(features, final_hits, errors, warnings), last_track
+        result = TemplateSearchResult(features, final_hits, errors, warnings), last_track
+        self._template_feature_cache[cache_key] = result
+        return result
