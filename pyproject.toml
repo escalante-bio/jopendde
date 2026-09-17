@@ -32,8 +32,7 @@ jax-cuda = [
 # featurizer of its own and the weights ship as a torch checkpoint, so
 # converting a model / featurizing inputs (Predictor.from_checkpoint,
 # Predictor.featurize) need `opendde` + torch. torch/torchvision/torchaudio are
-# listed here (matching opendde's own pins) so the CPU-index source below
-# applies to them.
+# listed here so the CPU-index source below applies to them.
 reference = [
   "opendde",
   "torch",
