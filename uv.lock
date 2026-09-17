@@ -3,7 +3,8 @@ revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'linux'",
-    "python_full_version >= '3.14' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
     "(python_full_version == '3.13.*' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version == '3.13.*' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
@@ -757,12 +758,12 @@ jax-cuda = [
 ]
 reference = [
     { name = "opendde" },
-    { name = "torch", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "torchaudio", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchaudio", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchvision", version = "0.22.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchvision", version = "0.22.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchaudio", version = "2.11.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchaudio", version = "2.11.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchvision", version = "0.26.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchvision", version = "0.26.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
 ]
 
 [package.metadata]
@@ -1220,7 +1221,8 @@ name = "nvidia-cublas-cu12"
 version = "12.9.2.10"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version >= '3.14' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
     "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "python_full_version == '3.13.*' and sys_platform == 'darwin'",
@@ -1442,12 +1444,12 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "scikit-learn-extra" },
     { name = "scipy" },
-    { name = "torch", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "torchaudio", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchaudio", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchvision", version = "0.22.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torchvision", version = "0.22.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchaudio", version = "2.11.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchaudio", version = "2.11.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchvision", version = "0.26.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torchvision", version = "0.26.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
     { name = "tqdm" },
 ]
 
@@ -1470,14 +1472,14 @@ requires-dist = [
     { name = "py3dmol", specifier = "==2.5.2" },
     { name = "pydantic", specifier = ">=2.0.0" },
     { name = "pyyaml", specifier = "==6.0.2" },
-    { name = "rdkit", specifier = "==2025.9.3" },
+    { name = "rdkit", specifier = ">=2025.9.3" },
     { name = "requests", specifier = ">=2.31.0" },
     { name = "scikit-learn", specifier = "==1.7.1" },
     { name = "scikit-learn-extra", specifier = "==0.3.0" },
     { name = "scipy", specifier = ">=1.9.0" },
-    { name = "torch", specifier = "==2.7.1" },
-    { name = "torchaudio", specifier = "==2.7.1" },
-    { name = "torchvision", specifier = "==0.22.1" },
+    { name = "torch", specifier = ">=2.7.1" },
+    { name = "torchaudio", specifier = ">=2.7.1" },
+    { name = "torchvision", specifier = ">=0.22.1" },
     { name = "tqdm", specifier = "==4.67.1" },
     { name = "triton", marker = "sys_platform == 'linux' and extra == 'gpu'", specifier = "==3.3.1" },
 ]
@@ -2091,11 +2093,11 @@ wheels = [
 
 [[package]]
 name = "setuptools"
-version = "83.0.0"
+version = "81.0.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/34/26/f5d29e25ffdb535afef2d35cdb55b325298f96debd670da4c325e08d70f4/setuptools-83.0.0.tar.gz", hash = "sha256:025bccbbf0fa05b6192bc64ae1e7b16e001fd6d6d4d5de03c97b1c1ade523bef", size = 1154254, upload-time = "2026-07-04T15:31:22.699Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0d/1c/73e719955c59b8e424d015ab450f51c0af856ae46ea2da83eba51cc88de1/setuptools-81.0.0.tar.gz", hash = "sha256:487b53915f52501f0a79ccfd0c02c165ffe06631443a886740b91af4b7a5845a", size = 1198299, upload-time = "2026-02-06T21:10:39.601Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5d/40/e1e72872c6354b306daef1703549e8e83b4d43cfea356311bf722a043752/setuptools-83.0.0-py3-none-any.whl", hash = "sha256:29b23c360f22f414dc7336bb39178cc7bcbf6021ed2733cde173f09dba19abb3", size = 1008090, upload-time = "2026-07-04T15:31:20.885Z" },
+    { url = "https://files.pythonhosted.org/packages/e1/e3/c164c88b2e5ce7b24d667b9bd83589cf4f3520d97cad01534cd3c4f55fdb/setuptools-81.0.0-py3-none-any.whl", hash = "sha256:fdd925d5c5d9f62e4b74b30d6dd7828ce236fd6ed998a08d81de62ce5a6310d6", size = 1062021, upload-time = "2026-02-06T21:10:37.175Z" },
 ]
 
 [[package]]
@@ -2144,34 +2146,37 @@ wheels = [
 
 [[package]]
 name = "torch"
-version = "2.7.1"
+version = "2.11.0"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
     "python_full_version == '3.13.*' and sys_platform == 'darwin'",
     "python_full_version < '3.13' and sys_platform == 'darwin'",
 ]
 dependencies = [
-    { name = "filelock", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "fsspec", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "jinja2", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "networkx", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "setuptools", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "sympy", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "typing-extensions", marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "filelock", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "fsspec", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "jinja2", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "networkx", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "setuptools", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "sympy", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "typing-extensions", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
 ]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1-cp312-none-macosx_11_0_arm64.whl", hash = "sha256:7b4f8b2b83bd08f7d399025a9a7b323bdbb53d20566f1e0d584689bb92d82f9a", upload-time = "2025-06-03T18:28:06Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1-cp313-cp313t-macosx_14_0_arm64.whl", hash = "sha256:95af97e7b2cecdc89edc0558962a51921bf9c61538597dbec6b7cc48d31e2e13", upload-time = "2025-06-03T18:28:06Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1-cp313-none-macosx_11_0_arm64.whl", hash = "sha256:7ecd868a086468e1bcf74b91db425c1c2951a9cfcd0592c4c73377b7e42485ae", upload-time = "2025-06-03T18:28:07Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:43b35116802c85fb88d99f4a396b8bd4472bfca1dd82e69499e5a4f9b8b4e252", upload-time = "2026-03-23T15:16:58Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:442ec9dc78592564fdad69cf0beaa9da2f82ab810ccb4f13903869a90bf3f15d", upload-time = "2026-03-23T15:17:02Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:cc3a195701bba2239c313ee311487f80f8aaebe9e89b9073dddbcf2f93b5a0ba", upload-time = "2026-03-23T15:17:06Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:072a0d6e4865e8b0dc0dbfe6ebed68fae235124222835ef03e5814d414d8c012", upload-time = "2026-03-23T15:17:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0-cp314-cp314t-macosx_11_0_arm64.whl", hash = "sha256:23ec7789017da9d95b6d543d790814785e6f30905c5443efa8257d1490d73f79", upload-time = "2026-03-23T15:17:14Z" },
 ]
 
 [[package]]
 name = "torch"
-version = "2.7.1+cpu"
+version = "2.11.0+cpu"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'linux'",
-    "python_full_version >= '3.14' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "(python_full_version == '3.13.*' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version == '3.13.*' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
@@ -2180,123 +2185,143 @@ resolution-markers = [
     "python_full_version < '3.13' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "filelock", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "fsspec", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "jinja2", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "networkx", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "setuptools", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "sympy", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
-    { name = "typing-extensions", marker = "python_full_version >= '3.14' or (python_full_version < '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or sys_platform != 'darwin'" },
+    { name = "filelock", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "fsspec", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "jinja2", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "networkx", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "setuptools", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "sympy", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "typing-extensions", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
 ]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:3bf2db5adf77b433844f080887ade049c4705ddf9fe1a32023ff84ff735aa5ad", upload-time = "2025-06-03T18:27:57Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:8f8b3cfc53010a4b4a3c7ecb88c212e9decc4f5eeb6af75c3c803937d2d60947", upload-time = "2025-06-03T18:27:57Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:0bc887068772233f532b51a3e8c8cfc682ae62bef74bf4e0c53526c8b9e4138f", upload-time = "2025-06-03T18:27:56Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp312-cp312-win_arm64.whl", hash = "sha256:a2618775f32eb4126c5b2050686da52001a08cffa331637d9cf51c8250931e00", upload-time = "2025-07-16T16:40:20Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:eb17646792ac4374ffc87e42369f45d21eff17c790868963b90483ef0b6db4ef", upload-time = "2025-06-03T18:28:00Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:84ea1f6a1d15663037d01b121d6e33bb9da3c90af8e069e5072c30f413455a57", upload-time = "2025-06-03T18:28:01Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:b66f77f6f67317344ee083aa7ac4751a14395fcb38060d564bf513978d267153", upload-time = "2025-06-03T18:28:00Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:56136a2aca6707df3c8811e46ea2d379eaafd18e656e2fd51e8e4d0ca995651b", upload-time = "2025-06-03T18:28:03Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:355614185a2aea7155f9c88a20bfd49de5f3063866f3cf9b2f21b6e9e59e31e0", upload-time = "2025-06-03T18:28:05Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.7.1%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:464bca1bc9452f2ccd676514688896e66b9488f2a0268ecd3ac497cf09c5aac1", upload-time = "2025-06-03T18:28:01Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp312-cp312-linux_s390x.whl", hash = "sha256:2db3ae5404e32cb42b5fcbd94f13607761eaec0cf1687fde95095289d1e26cfb", upload-time = "2026-04-28T00:06:06Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:70ecb2659af6373b7c5336e692e665605b0201ea21ff51aaea47e1d75ea6b5aa", upload-time = "2026-04-28T00:06:14Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:f82e2ae20c1545bb03997d1cc3143d94e14b800038669ee1aca45808a9acc338", upload-time = "2026-04-28T00:06:24Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:1abeaa46fa7532ed35ed79146f4de5d7a9d4b30462c98052ea4ddfe781ea3eca", upload-time = "2026-04-28T00:06:34Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313-linux_s390x.whl", hash = "sha256:d1eff25ccc454faf21c9666c81bfab8e405e87c12d300708d4559620bc191a36", upload-time = "2026-04-28T00:06:42Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:48b3e21a311445acdd0b27f13830e21d93adef70d4721e051e9f059baeb9b8f9", upload-time = "2026-04-28T00:06:51Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:45025d7752dbc6b4c784c03afaee9c5f19730ce084b2e43fc9a2fe1677d9ff86", upload-time = "2026-04-28T00:07:02Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:ed70d4a4fc9f8b826c02fa1a9800a83820fb2fa6ae607680b53390f9ef394d85", upload-time = "2026-04-28T00:07:12Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313t-linux_s390x.whl", hash = "sha256:65d427a196ab0abe359b93c5bffedd76ded02df2b1b1d2d9f11a2609b69f426a", upload-time = "2026-04-28T00:07:19Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:8f13dc7075ae04ca5f876a9f40b4e47522a04c23e30824b4409f42a3f3e57aa4", upload-time = "2026-04-28T00:07:27Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:8713bb8679376ea0ec25742100b6cfb8447e0904c48bddefb9eb0ac1abbfa60a", upload-time = "2026-04-28T00:07:37Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:62ec1f1694c185f601eab74eb7fc0e8e10c64c06ae82f13c3592774c231c4877", upload-time = "2026-04-28T00:07:47Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314-linux_s390x.whl", hash = "sha256:c9a14c367f470623b978e273a4e1915995b4ba7a0ae999178b06c273eea3536f", upload-time = "2026-04-28T00:07:54Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_aarch64.whl", hash = "sha256:71676f6a9a84bbd385e010198b51fa1c2324fb8f3c512a32d2c81af65f68f4c9", upload-time = "2026-04-28T00:08:02Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:f8481ea9088e4e5b81178a75aabdbb658bde8639bc1a15fd5d8f930abc966735", upload-time = "2026-04-28T00:08:11Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314-win_amd64.whl", hash = "sha256:7575af4c9f7f7500ed62b1dafeb069aa0ba35b368a5f09793b3976b3d50f4fe4", upload-time = "2026-04-28T00:08:20Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314t-linux_s390x.whl", hash = "sha256:825f1596878280a3a4c861441674888bc2d792e4ab7b045cb35feeab3f4f5dd7", upload-time = "2026-04-28T00:08:27Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314t-manylinux_2_28_aarch64.whl", hash = "sha256:c8a0bdfb2fd915b6c2cd27c856f63f729c366a4917772eba6b2b02aa3bce70d5", upload-time = "2026-04-28T00:08:36Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314t-manylinux_2_28_x86_64.whl", hash = "sha256:768f22924a25cad2adeb9c6cbac5159e71067c8d4019b1511960d7435a5ca652", upload-time = "2026-04-28T00:08:47Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torch-2.11.0%2Bcpu-cp314-cp314t-win_amd64.whl", hash = "sha256:6db45e7b2526d996fbf47c3d08737807a60a4e17996a6d91a97027fe260832c8", upload-time = "2026-04-28T00:08:57Z" },
 ]
 
 [[package]]
 name = "torchaudio"
-version = "2.7.1"
+version = "2.11.0"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
-    "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
     "python_full_version == '3.13.*' and sys_platform == 'darwin'",
-    "python_full_version < '3.13' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "python_full_version < '3.13' and sys_platform == 'darwin'",
 ]
-dependencies = [
-    { name = "torch", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:9306dcfc4586cebd7647a93fe9a448e791c4f83934da616b9433b75597a1f978", upload-time = "2025-06-03T18:37:36Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:d66bd76b226fdd4135c97650e1b7eb63fb7659b4ed0e3a778898e41dbba21b61", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:e5f0599a507f4683546878ed9667e1b32d7ca3c8a957e4c15c6b302378ef4dee", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:271f717844e5c7f9e05c8328de817bf90f46d83281c791e94f54d4edea2f5817", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:18560955b8beb2a8d39a6bfae20a442337afcefb3dfd4ee007ce82233a796799", upload-time = "2025-06-03T18:37:36Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:1850475ef9101ea0b3593fe93ff6ee4e7a20598f6da6510761220b9fe56eb7fa", upload-time = "2025-06-03T18:37:36Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:a1cf1acc883bee9cb906a933572fed6a8a933f86ef34e9ea7d803f72317e8c1b", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0-cp313-cp313-macosx_12_0_arm64.whl", hash = "sha256:e3f9696a9ef1d49acc452159b052370c636406d072e9d8f10895fda87b591ea9", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0-cp313-cp313t-macosx_12_0_arm64.whl", hash = "sha256:bda09ea630ae7207384fb0f28c35e4f8c0d82dd6eba020b6b335ad0caa9fed49", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0-cp314-cp314-macosx_12_0_arm64.whl", hash = "sha256:cc09cd1f6015b8549e7fe255fb1be5346b57e7fee06541d3f3dbb012d8c4715f", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0-cp314-cp314t-macosx_12_0_arm64.whl", hash = "sha256:da2725e250866da42a12934c9a6552f65a18b7187fd7a6221387f0e605fb3b96", upload-time = "2026-03-23T15:50:10Z" },
 ]
 
 [[package]]
 name = "torchaudio"
-version = "2.7.1+cpu"
+version = "2.11.0+cpu"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'linux'",
-    "python_full_version >= '3.14' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "(python_full_version == '3.13.*' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version == '3.13.*' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "(python_full_version < '3.13' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'linux'",
-]
-dependencies = [
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    "python_full_version < '3.13' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
 ]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:65bf843345ae05629b7f71609bab0808004dabfce6cf48ea508a5d4f5419ca74", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:a71ef774991658188721f53ebf05c8858b2baf0abb17b65bf447b294f3e63e2e", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:e169a2b62e55342f2f30e17640054707c8e339045a1ccc2db33517e9debb2767", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:6d4855a0d40d700b6a20b5d2691cfc9ea2296419e3ab0442ee2a1e8d0b73242a", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:2ec85e79386c3e68ae67ac74033118253f0c7a64a8343a58b2df802e42ca9f74", upload-time = "2025-06-03T18:37:35Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.7.1%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:5856ce75fb0cfb2a0d8be4e3f9def122414f009aad4347161ad80f5b8f708fa4", upload-time = "2025-06-03T18:37:35Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:b9dd2c6ac144001dc6dac38b564c1de73ac26ef0c195d5037c4a94990b0e2b5a", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:2354248848d06a9ae1e7a12165f800f0dda7df60ecac9fca892322b722b922c0", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:95d517bd1a0a28dacd1c37550ced95cab64f3a7a4ef9b8219b41049388a71163", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:2faa8d8f251d1fa44813765b00791048b617e9dc06e6cd9222aba81023929119", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:3c0175d0ed054bf0dc3b154a744b1a127c94291b3f3b7bdd0639b4b238c89445", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:fa0c22f58f60c3537b7d28ed2501e0995acb2a65d9af2708f21edaad67186cd8", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:5d665234def325e22c15518c581b0107a651c9f843176e3192360b092ebcb656", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:a3df9c41706a22de0f43fe2734f54db31cb5a7314cc92ecc84657a8492b3ff8d", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:18818a326b779abc7bfd5cfb9fe88501916dde144cb1944fc9e7b4fb6208dfc7", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_aarch64.whl", hash = "sha256:591ed8279f0170ef28933873f65e9f5f8c439287088ef6285cda65988b0ba614", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:34c5dcd704e17a2b01c097b4fe3b5f83c5cdbc42b9f2abd095e026c588f873d4", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314-win_amd64.whl", hash = "sha256:be19f467eb7a173264653369426e7ecc4745e28d15f9c52eea2ad5316ec685eb", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314t-manylinux_2_28_aarch64.whl", hash = "sha256:ad3e6141c1078c5c9c8ae7c3cdf6c80eb35612c99c8cf3f76fe295845f45bb9d", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314t-manylinux_2_28_x86_64.whl", hash = "sha256:69db7c3d86af1bc8224f7053395ace3e2bd8c56b0c3922bc7b798114440c88e5", upload-time = "2026-03-23T15:50:10Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchaudio-2.11.0%2Bcpu-cp314-cp314t-win_amd64.whl", hash = "sha256:b6bfca873bd67d02fbbaa254312283be48dc1ca5532013152527210db432ef8c", upload-time = "2026-03-23T15:50:10Z" },
 ]
 
 [[package]]
 name = "torchvision"
-version = "0.22.1"
+version = "0.26.0"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
-    "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
+    "python_full_version >= '3.14' and sys_platform == 'darwin'",
     "python_full_version == '3.13.*' and sys_platform == 'darwin'",
-    "python_full_version < '3.13' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "python_full_version < '3.13' and sys_platform == 'darwin'",
 ]
 dependencies = [
-    { name = "numpy", marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "pillow", marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version < '3.14' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (python_full_version >= '3.14' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_python_implementation != 'CPython' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (sys_platform != 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "numpy", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "pillow", marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform == 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
 ]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:153f1790e505bd6da123e21eee6e83e2e155df05c0fe7d56347303067d8543c5", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:964414eef19459d55a10e886e2fca50677550e243586d1678f65e3f6f6bac47a", upload-time = "2025-06-03T18:37:23Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:9c3ae3319624c43cc8127020f46c14aa878406781f0899bb6283ae474afeafbf", upload-time = "2025-06-03T18:37:23Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:4a614a6a408d2ed74208d0ea6c28a2fbb68290e9a7df206c5fef3f0b6865d307", upload-time = "2025-06-03T18:37:23Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp313-cp313t-macosx_11_0_arm64.whl", hash = "sha256:043d9e35ed69c2e586aff6eb9e2887382e7863707115668ac9d140da58f42cba", upload-time = "2025-06-03T18:37:23Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:27142bcc8a984227a6dcf560985e83f52b82a7d3f5fe9051af586a2ccc46ef26", upload-time = "2025-06-03T18:37:23Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:c409e1c3fdebec7a3834465086dbda8bf7680eff79abf7fd2f10c6b59520a7a4", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0-cp313-cp313-macosx_12_0_arm64.whl", hash = "sha256:5d63dd43162691258b1b3529b9041bac7d54caa37eae0925f997108268cbf7c4", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0-cp313-cp313t-macosx_12_0_arm64.whl", hash = "sha256:358fc4726d0c08615b6d83b3149854f11efb2a564ed1acb6fce882e151412d23", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0-cp314-cp314-macosx_12_0_arm64.whl", hash = "sha256:eb61804eb9dbe88c5a2a6c4da8dec1d80d2d0a6f18c999c524e32266cb1ebcd3", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0-cp314-cp314t-macosx_12_0_arm64.whl", hash = "sha256:b7d3e295624a28b3b1769228ce1345d94cf4d390dd31136766f76f2d20f718da", upload-time = "2026-03-23T15:36:09Z" },
 ]
 
 [[package]]
 name = "torchvision"
-version = "0.22.1+cpu"
+version = "0.26.0+cpu"
 source = { registry = "https://download.pytorch.org/whl/cpu" }
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'linux'",
-    "python_full_version >= '3.14' and sys_platform != 'linux'",
+    "python_full_version >= '3.14' and sys_platform != 'darwin' and sys_platform != 'linux'",
     "(python_full_version == '3.13.*' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version == '3.13.*' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version == '3.13.*' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version == '3.13.*' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
     "(python_full_version < '3.13' and platform_machine != 'aarch64' and sys_platform == 'linux') or (python_full_version < '3.13' and platform_python_implementation != 'CPython' and sys_platform == 'linux')",
     "python_full_version < '3.13' and sys_platform != 'darwin' and sys_platform != 'linux'",
+    "python_full_version < '3.13' and platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'",
 ]
 dependencies = [
-    { name = "numpy", marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "pillow", marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
-    { name = "torch", version = "2.7.1+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "(python_full_version >= '3.14' and sys_platform == 'darwin') or (python_full_version >= '3.14' and sys_platform == 'linux') or (python_full_version < '3.14' and sys_platform == 'linux' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda') or (platform_machine != 'aarch64' and sys_platform == 'linux') or (platform_python_implementation != 'CPython' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux') or (sys_platform == 'darwin' and extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "numpy", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "pillow", marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
+    { name = "torch", version = "2.11.0+cpu", source = { registry = "https://download.pytorch.org/whl/cpu" }, marker = "sys_platform != 'darwin' or (extra == 'group-8-jopendde-jax-cpu' and extra == 'group-8-jopendde-jax-cuda')" },
 ]
 wheels = [
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:b5fa7044bd82c6358e8229351c98070cf3a7bf4a6e89ea46352ae6c65745ef94", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:433cb4dbced7291f17064cea08ac1e5aebd02ec190e1c207d117ad62a8961f2b", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:a93c21f18c33a819616b3dda7655aa4de40b219682c654175b6bbeb65ecc2e5f", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:34c914ad4728b81848ac802c5fc5eeb8de8ff4058cc59c1463a74ce4f4fbf0d8", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:ab7ae82529887c704c1b5d1d5198f65dc777d04fc3858b374503a6deedb82b19", upload-time = "2025-06-03T18:37:22Z" },
-    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.22.1%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:b2d1c4bdbfd8e6c779dc810a6171b56224f1332fc46986810d4081bed1633804", upload-time = "2025-06-03T18:37:22Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp312-cp312-manylinux_2_28_aarch64.whl", hash = "sha256:17f0b542331fc94230b4214c6d123f038af7330fd81019608c0d2402f3bc3079", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl", hash = "sha256:cf547dc0975eb40bc3249be4ccbeb736597d2c3ece305b1c4e5b7a5dd7363567", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp312-cp312-win_amd64.whl", hash = "sha256:52aa8401850a9792e71a8a1e65ac004e2b23622a6b6fd278cd11179efbefc65b", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313-manylinux_2_28_aarch64.whl", hash = "sha256:2e932af123a39137815dfd152c64cc683fa7cbd327c965e807c9728c7aa4971a", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313-manylinux_2_28_x86_64.whl", hash = "sha256:16c4f11eda096dc377e82238c8ebb26c7013622c0f1b2c4dcf85fc70f96c0ea7", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313-win_amd64.whl", hash = "sha256:34ac55a1f614baca2e0f5cef20ddb36184ee3503423871260e1ddd72caf9cb5f", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313t-manylinux_2_28_aarch64.whl", hash = "sha256:3d30ce3444698807d4b18b199645cd7a95e0b16a4cd0909b8aab47c562a7673a", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313t-manylinux_2_28_x86_64.whl", hash = "sha256:870a97101168d4da68039d3d51f0c781047065e82dc4c19b2eb0ddff08486180", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp313-cp313t-win_amd64.whl", hash = "sha256:050aaf28cff9c2981ec72dc3f9b4ef77bcf9c9c99330ce426cb06c5bb9e6e726", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314-manylinux_2_28_aarch64.whl", hash = "sha256:78576c8d5a8665de6caaa6e7c3a3fb7caa5dc112032ba60e129a9e78a446a03b", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314-manylinux_2_28_x86_64.whl", hash = "sha256:78e88d0a57bfadcd17042aa92fe4dd1059e48fcaa2e54a10ac7f438c2eca10d5", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314-win_amd64.whl", hash = "sha256:93144d0997c51b27996c8305df4d9104efb0d38c9a9b6b05c8bc20ebdf7193b5", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314t-manylinux_2_28_aarch64.whl", hash = "sha256:93a11b159613ad920b1d42c4eb4e585f48e5dff895f3e08f517ef482fe84e130", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314t-manylinux_2_28_x86_64.whl", hash = "sha256:99f86ec0a83b9e4b5428a452bf667f99a9ae27d4c32bd4b2081fe917303e7710", upload-time = "2026-03-23T15:36:09Z" },
+    { url = "https://download-r2.pytorch.org/whl/cpu/torchvision-0.26.0%2Bcpu-cp314-cp314t-win_amd64.whl", hash = "sha256:6139108231a29ffb607931360ee24594553a939467c65530f734a2ed9918f011", upload-time = "2026-03-23T15:36:09Z" },
 ]
 
 [[package]]
