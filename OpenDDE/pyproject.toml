@@ -48,7 +48,7 @@ dependencies = [
   "py3Dmol==2.5.2",
   "rdkit>=2025.9.3",
   "biopython>=1.84",
-  "biotite==1.4.0",
+  "biotite>=1.4.0",
   "modelcif>=1.2",
   "gemmi>=0.6.7",
   "pdbeccdutils==1.0.0",

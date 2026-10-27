@@ -1456,7 +1456,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "biopython", specifier = ">=1.84" },
-    { name = "biotite", specifier = "==1.4.0" },
+    { name = "biotite", specifier = ">=1.4.0" },
     { name = "click", specifier = ">=8.1.0" },
     { name = "gemmi", specifier = ">=0.6.7" },
     { name = "ipywidgets", specifier = "==8.1.7" },
