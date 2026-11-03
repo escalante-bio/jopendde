@@ -10,6 +10,13 @@ post-processing are not implemented.
 With `pair_output_space == "residue"` the distogram and confidence heads
 consume the residue branch. The sampled `coordinate` is stochastic (Algorithm
 18's Euler sampler draws fresh Gaussian noise each step).
+
+The recycling trunk can also be driven one pass at a time; `get_pairformer_output`
+is built on this:
+
+    inputs = model.embed(feat)                 # fixed across passes
+    state = model.init_state(inputs)           # zeros
+    state = model.step(feat, inputs, state)    # one pass (repeat)
 """
 
 from __future__ import annotations
@@ -29,6 +36,22 @@ from jopendde.features import Features, Prediction
 from jopendde.head import DistogramHead
 from jopendde.msa import MSAModule, TemplateEmbedder
 from jopendde.structural_tokens import StructuralTokenExpander
+
+
+class TrunkInputs(eqx.Module):
+    """What every trunk pass reads that stays fixed across passes (AF3 Algorithm 1
+    lines 1-5): the per-token input features and the initial single / pair."""
+
+    s_inputs: Float[Array, "N Cs_in"]
+    s_init: Float[Array, "N Cs"]
+    z_init: Float[Array, "N N Cz"]
+
+
+class TrunkState(eqx.Module):
+    """The recycled residue-branch single and pair representations."""
+
+    s: Float[Array, "N Cs"]
+    z: Float[Array, "N N Cz"]
 
 
 class OpenDDE(eqx.Module):
@@ -167,9 +190,8 @@ class OpenDDE(eqx.Module):
             feat.sym_id,
         )
 
-    def get_pairformer_output(self, feat: Features, n_cycle: int):
-        """Returns the residue branch (s_inputs, s, z). `n_cycle` (recycles) is
-        a static inference knob passed by the caller."""
+    def embed(self, feat: Features) -> TrunkInputs:
+        """The trunk inputs that stay fixed across passes."""
         s_inputs = self.input_embedder(feat)  # [N_token, 449]
         s_init = self.linear_no_bias_sinit(s_inputs)  # [N_token, c_s]
 
@@ -179,27 +201,37 @@ class OpenDDE(eqx.Module):
         )
         z_init = z_init + self.relative_position_encoding(feat.relp)
         z_init = z_init + self.linear_no_bias_token_bond(feat.token_bonds[..., None])
+        return TrunkInputs(s_inputs=s_inputs, s_init=s_init, z_init=z_init)
 
-        s0 = jnp.zeros_like(s_init)
-        z0 = jnp.zeros_like(z_init)
+    def init_state(self, inputs: TrunkInputs) -> TrunkState:
+        """The recycled state before the first pass (zeros)."""
+        return TrunkState(s=jnp.zeros_like(inputs.s_init), z=jnp.zeros_like(inputs.z_init))
 
-        def cycle(carry, _):
-            s, z = carry
-            # Detach the recycled representations: recycling is a fixed-point-ish
-            # refinement, not a path to backprop through. A no-op for inference
-            # and for n_cycle=1 (carry is the zero init); for n_cycle>1 it
-            # confines the gradient to the final cycle's forward, bounding
-            # backward memory.
-            s, z = jax.lax.stop_gradient(s), jax.lax.stop_gradient(z)
-            z = z_init + self.linear_no_bias_z_cycle(self.layernorm_z_cycle(z))
-            z = z + self.template_embedder(feat, z)  # templates always embedded
-            z = self.msa_module(feat, z, s_inputs, pair_mask=None)
-            s = s_init + self.linear_no_bias_s(self.layernorm_s(s))
-            s, z = self.pairformer_stack(s, z, pair_mask=None)
-            return (s, z), None
+    def step(self, feat: Features, inputs: TrunkInputs, state: TrunkState) -> TrunkState:
+        """Exactly one trunk pass (AF3 Algorithm 1 lines 8-13). Differentiates
+        through `state`; `get_pairformer_output` detaches it."""
+        z = inputs.z_init + self.linear_no_bias_z_cycle(self.layernorm_z_cycle(state.z))
+        z = z + self.template_embedder(feat, z)  # templates always embedded
+        z = self.msa_module(feat, z, inputs.s_inputs, pair_mask=None)
+        s = inputs.s_init + self.linear_no_bias_s(self.layernorm_s(state.s))
+        s, z = self.pairformer_stack(s, z, pair_mask=None)
+        return TrunkState(s=s, z=z)
 
-        (s, z), _ = jax.lax.scan(cycle, (s0, z0), None, length=n_cycle)
-        return s_inputs, s, z
+    def get_pairformer_output(self, feat: Features, n_cycle: int):
+        """Returns the residue branch (s_inputs, s, z). `n_cycle` (recycles) is
+        a static inference knob passed by the caller.
+
+        Equivalent to `embed`, `init_state`, then `n_cycle` calls to `step`, each
+        on a detached state: recycling is a fixed-point-ish refinement, not a path
+        to backprop through, so the gradient is confined to the final pass,
+        bounding backward memory."""
+        inputs = self.embed(feat)
+
+        def cycle(state, _):
+            return self.step(feat, inputs, jax.lax.stop_gradient(state)), None
+
+        state, _ = jax.lax.scan(cycle, self.init_state(inputs), None, length=n_cycle)
+        return inputs.s_inputs, state.s, state.z
 
     # ---------------------------------------------------------------------
     # structural-token expansion
